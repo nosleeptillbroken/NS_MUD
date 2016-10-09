@@ -80,6 +80,8 @@ public:
 			WSACleanup();
 			assert(iResult == SOCKET_ERROR);
 		}
+
+		freeaddrinfo(result); // free that memory!
 	}
 
 };
