@@ -1,0 +1,34 @@
+#pragma once
+
+#include "stdafx.h"
+#include <thread>
+#include <winsock2.h>
+#include <ws2tcpip.h>
+#include <stdio.h>
+
+#pragma comment(lib, "Ws2_32.lib")
+
+/// This is a subclass? of thread to be used for accepting 
+/// incoming connections.
+class AcceptThread : std::thread
+{
+private:
+	// socket channel?
+	// selector?
+	// connectionList?
+public:
+	AcceptThread(int port) //also needs selector and connectionList
+	{
+		WSADATA wsaData; // WSA - WinSockApplication Data from winsock2.h
+
+		int iResult; // return from WSAStartup
+
+		// Initialize Winsock
+		iResult = WSAStartup(MAKEWORD(2, 2), &wsaData); // Startup service using this function
+		if (iResult != 0) 
+		{
+			printf("WSAStartup failed: %d\n", iResult);
+		}
+	}
+
+};
