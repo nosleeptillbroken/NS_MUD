@@ -27,3 +27,13 @@
 *.exe
 *.out
 *.app
+
+# VS Project specific files and folders
+.vs/
+Debug/
+debug/
+ipch/
+*.opendb
+*.db
+
+
