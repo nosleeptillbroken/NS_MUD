@@ -56,6 +56,19 @@ public:
 			WSACleanup();
 			assert(iResult != 0);
 		}
+
+		// Make the socket object
+
+		SOCKET ListenSocket = INVALID_SOCKET; // here is our first socket object
+		ListenSocket = socket(result->ai_family, result->ai_socktype, result->ai_protocol); // attempt to get a valid socket object assigned to this reference
+
+		if (ListenSocket == INVALID_SOCKET) 
+		{
+			printf("Error at socket(): %ld\n", WSAGetLastError());
+			freeaddrinfo(result);
+			WSACleanup();
+			assert(ListenSocket == INVALID_SOCKET);
+		}
 	}
 
 };
