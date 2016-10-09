@@ -32,5 +32,8 @@
     <ClCompile Include="NS-MUD.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="accept_thread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
