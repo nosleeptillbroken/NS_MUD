@@ -62,12 +62,23 @@ public:
 		SOCKET ListenSocket = INVALID_SOCKET; // here is our first socket object
 		ListenSocket = socket(result->ai_family, result->ai_socktype, result->ai_protocol); // attempt to get a valid socket object assigned to this reference
 
+		// Make sure we got a valid socket
 		if (ListenSocket == INVALID_SOCKET) 
 		{
 			printf("Error at socket(): %ld\n", WSAGetLastError());
 			freeaddrinfo(result);
 			WSACleanup();
 			assert(ListenSocket == INVALID_SOCKET);
+		}
+
+		// Setup the TCP listening socket
+		iResult = bind(ListenSocket, result->ai_addr, (int)result->ai_addrlen);
+		if (iResult == SOCKET_ERROR) {
+			printf("bind failed with error: %d\n", WSAGetLastError());
+			freeaddrinfo(result);
+			closesocket(ListenSocket);
+			WSACleanup();
+			assert(iResult == SOCKET_ERROR);
 		}
 	}
 
